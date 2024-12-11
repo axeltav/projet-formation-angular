@@ -1,0 +1,43 @@
+<form [formGroup]="form" (submit)="onSubmit()">
+  <div class="pb-12 pt-6 flex flex-col justify-center items-center">
+    <div class="p-3 max-w-96 space-y-6 border border-gray-900/10 rounded-md">
+  <label class="block text-sm/6 font-medium text-gray-900"> Username :
+    <input [class.invalid]="isInvalid('username')"  type="text" formControlName="username" class="border border-gray-900/10 rounded-md">
+    @if(form.get('username'); as username) {
+      @if((username.touched || username.dirty) && username.invalid) {
+        <p>Username required</p>
+      }
+    }
+  </label>
+  <label class="block text-sm/6 font-medium text-gray-900"> Email :
+    <input [class.invalid]="isInvalid('email')" type="email" formControlName="email" class="border border-gray-900/10 rounded-md">
+    @if(isInvalid('email')) {
+      <p>Invalid Email</p>
+    }
+  </label>
+  <label class="block text-sm/6 font-medium text-gray-900"> Password :
+    <input [class.invalid]="isInvalid('password') || isInvalid(confirmPasswordControl)" type="password" formControlName="password" class="border border-gray-900/10 rounded-md">
+    @if (hasError('password','required')) {
+      <p>Required Password</p>
+    }
+    @if (hasError('password','minlength')) {
+      <p>Password too short</p>
+    }
+    @if (hasError(confirmPasswordControl,'mustmatch')) {
+      <p>Password and Confirm Password must match</p>
+    }
+  </label>
+  <label class="block text-sm/6 font-medium text-gray-900"> Confirm Password :
+    <input [class.invalid]="isInvalid(confirmPasswordControl)" type="password" [formControl]="confirmPasswordControl" class="border border-gray-900/10 rounded-md">
+    @if (hasError(confirmPasswordControl,'required')) {
+      <p>Required Confirm Password</p>
+    }
+    @if (hasError(confirmPasswordControl,'mustmatch')) {
+      <p>Password and Confirm Password must match</p>
+    }
+  </label>
+  <ul class="actions flex flex-row justify-center space-x-12">
+    <li><button class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" type="submit">Send</button></li>
+    <li><button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" type="reset">Reset</button></li>
+  </ul></div></div>
+</form>

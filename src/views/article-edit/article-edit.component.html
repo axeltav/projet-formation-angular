@@ -1,0 +1,44 @@
+<form [formGroup]="form" (submit)="onSubmit()">
+    <div class="space-y-12 mt-16">
+        <div class="pb-12 flex flex-col justify-center items-center">
+          <div class="max-w-96 space-y-6 border border-gray-900/10 rounded-md p-3">
+    <label class="block text-sm/6 font-medium text-gray-900"> Titre :
+      <input [class.invalid]="isInvalid('titre')" class="border border-gray-900/10 rounded-md" type="text" formControlName="titre">
+      @if(hasError('titre','required')) {
+        <p>Titre requis</p>
+      }
+    </label>
+    <label class="block text-sm/6 font-medium text-gray-900"> Lien :
+      <input [class.invalid]="isInvalid('lien')" class="border border-gray-900/10 rounded-md" type="text" formControlName="lien">
+      @if(hasError('lien','required')) {
+        <p>Lien requis</p>
+      }
+    </label>
+    <label class="block text-sm/6 font-medium text-gray-900"> Image :
+      <select formControlName="src" class="border border-gray-900/10 rounded-md">
+        <option value="null">Pas d'image</option>
+        @for(pic of pics; track $index) {
+          <option [value]="pic">{{pic}}</option>
+        }
+  
+      </select>
+    </label>
+    <label class="block text-sm/6 font-medium text-gray-900"> Alt :
+      <input [class.invalid]="isInvalid('alt')" class="border border-gray-900/10 rounded-md" type="text" formControlName="alt">
+      @if(hasError('alt','required')) {
+        <p>Alt requis</p>
+      }
+    </label>
+    <label class="block text-sm/6 font-medium text-gray-900"> Description :<br>
+      <textarea class="border border-gray-900/10 rounded-md w-64 h-32" [class.invalid]="isInvalid('description')" formControlName="description"></textarea>
+      @if(hasError('description','required')) {
+        <p>Description requise</p>
+      }
+    </label>
+    <ul class="actions flex flex-row justify-center space-x-12">
+      <li><button class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" type="submit">Send</button></li>
+      <li><button class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" type="reset">Reset</button></li>
+    </ul>
+</div></div></div>
+  </form>
+  

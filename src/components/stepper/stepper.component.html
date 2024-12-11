@@ -1,0 +1,9 @@
+<div class="relative h-full w-full overflow-hidden">
+  <ng-content/>
+  <div class="absolute left-0 h-full flex items-center">
+    <button (click)="prev()">Prev</button>
+  </div>
+  <div class="absolute right-0 h-full flex items-center">
+    <button (click)="next()">Next</button>
+  </div>
+</div>

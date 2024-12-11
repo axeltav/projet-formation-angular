@@ -1,0 +1,17 @@
+<div class="h-80 mt-8 mx-16">
+    <app-stepper class="mt-64">
+        @for (article of articles; track $index) {
+          <app-step>
+            <div class="h-full w-full flex justify-center items-center">
+                <app-article [article]="article"/>
+            </div>
+          </app-step>
+        }
+    </app-stepper>
+</div>
+    
+    <div class="grid grid-cols-4 gap-4 m-8">
+        @for (article of articles; track $index) {
+            <app-article [article]="article"/>
+        }
+    </div>
